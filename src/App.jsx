@@ -16,7 +16,7 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Login />} />
+        <Route path="/ERPweb" element={<Login />} />
         <Route path="/Student/*" element={<StudentRoute />} />
         <Route path="/Teacher/*" element={<TeacherRoute />} />
         <Route path="/Admin/*" element={<AdminRoute />} />
