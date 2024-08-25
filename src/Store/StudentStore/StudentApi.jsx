@@ -1,0 +1,17 @@
+export const Student_Attendence = '/attendance';
+export const Student_Teacher = '/teachers_details';
+export const Student_Enquiry = '/enquiry';
+export const Student_Holiday = '/holidays';
+export const Student_Leaves = '/leaves';
+export const Student_Events = '/events';
+export const Student_Examtimetable = '/exam_time_table';
+export const Student_Result = '/results';
+export const Student_Homework = '/homework';
+export const Student_Getfeesdetail = '/get_fee_amount';
+export const Student_Dues = '/dues';
+export const Student_Hosteldetailfetch = '/hostel_details_fetch';
+export const Student_HostelApply = '/hostel_apply';
+export const Student_Busdetailfetch = '/bus_details_fetch';
+export const Student_BusApply = '/bus_apply';
+export const Student_Librarbooksfetch = '/library_books_fetch';
+export const Student_Booksissuedfetch = '/books_issued_fetch';
