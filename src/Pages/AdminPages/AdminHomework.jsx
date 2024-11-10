@@ -35,7 +35,6 @@ const Homework = () => {
                 body: JSON.stringify({ class: selectedClass, section: selectedSection, date: dates }),
             });
             const data = await response.json();
-            console.log(data)
             setHomeworkData(data);
         } catch (error) {
             console.error('Failed to fetch homework data:', error);
@@ -76,7 +75,11 @@ const Homework = () => {
                 body: JSON.stringify(formData),
             });
             if (response.ok) {
-                fetchHomeworkData();
+                if (selectedClass && selectedSection) {
+                    fetchHomeworkData();
+                } else {
+                    alert("Please select class and section");
+                }
             }
         } catch (error) {
             console.error('Failed to add homework:', error);

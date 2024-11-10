@@ -19,7 +19,7 @@ const AdminEvent = () => {
     const [events, setEvents] = useState([]);
     const [dialogOpen, setDialogOpen] = useState(false);
     const [selectedEvent, setSelectedEvent] = useState(null);
-    const [newEvent, setNewEvent] = useState({ eventname: '', date: '', month: '', description: '' });
+    const [newEvent, setNewEvent] = useState({ eventname: '', date: '', month: '', dayOfWeek: '' });
     const [loading, setLoading] = useState(true);
     const [currentMonth, setCurrentMonth] = useState(moment().format('MM'));
 
@@ -58,7 +58,7 @@ const AdminEvent = () => {
 
     const handleOpenDialog = (event) => {
         setSelectedEvent(event);
-        setNewEvent(event || { eventname: '', date: '', month: '', description: '' });
+        setNewEvent(event || { eventname: '', date: '', month: '', dayOfWeek: '' });
         setDialogOpen(true);
     };
 
@@ -216,9 +216,9 @@ const AdminEvent = () => {
                             fullWidth
                         />
                         <TextField
-                            label="Description"
-                            value={newEvent.description}
-                            onChange={(e) => setNewEvent({ ...newEvent, description: e.target.value })}
+                            label="Day"
+                            value={newEvent.dayOfWeek}
+                            onChange={(e) => setNewEvent({ ...newEvent, dayOfWeek: e.target.value })}
                             fullWidth
                         />
                     </div>

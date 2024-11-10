@@ -88,8 +88,8 @@ const AdminExaminationPage = () => {
             if (response.ok) {
                 fetchExamData();
                 setNewExams([]);
+                setOpen(false);
                 setModalVisible1(false);
-                alert('Examinations saved successfully');
             } else {
                 throw new Error('Failed to save examinations');
             }

@@ -15,7 +15,6 @@ import { url } from "../../Store/Config";
 const AdminTeacher = () => {
     const [teachers, setTeachers] = useState([]);
     const [departments, setDepartments] = useState([]);
-    const [selectedDepartment, setSelectedDepartment] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [dialogOpen, setDialogOpen] = useState(false);
@@ -216,6 +215,48 @@ const AdminTeacher = () => {
                             </div>
                             <div className="flex flex-col-2 space-x-4">
                                 <TextField
+                                    label="City"
+                                    value={selectedTeacher.city}
+                                    onChange={(e) => handleEditChange('city', e.target.value)}
+                                    fullWidth
+                                />
+                                <TextField
+                                    label="Country"
+                                    value={selectedTeacher.country}
+                                    onChange={(e) => handleEditChange('country', e.target.value)}
+                                    fullWidth
+                                />
+                            </div>
+                            <div className="flex flex-col-2 space-x-4">
+                                <TextField
+                                    label="Father's Name"
+                                    value={selectedTeacher.father_name}
+                                    onChange={(e) => handleEditChange('father_name', e.target.value)}
+                                    fullWidth
+                                />
+                                <TextField
+                                    label="Mother's Name"
+                                    value={selectedTeacher.mother_name}
+                                    onChange={(e) => handleEditChange('mother_name', e.target.value)}
+                                    fullWidth
+                                />
+                            </div>
+                            <div className="flex flex-col-2 space-x-4">
+                                <TextField
+                                    label="Postal Code"
+                                    value={selectedTeacher.postal_code}
+                                    onChange={(e) => handleEditChange('postal_code', e.target.value)}
+                                    fullWidth
+                                />
+                                <TextField
+                                    label="State"
+                                    value={selectedTeacher.state}
+                                    onChange={(e) => handleEditChange('state', e.target.value)}
+                                    fullWidth
+                                />
+                            </div>
+                            <div className="flex flex-col-2 space-x-4">
+                                <TextField
                                     label="Department"
                                     value={selectedTeacher.section_or_department}
                                     onChange={(e) => handleEditChange('section_or_department', e.target.value)}
@@ -250,6 +291,20 @@ const AdminTeacher = () => {
                                     fullWidth
                                     required
                                 />
+                                <TextField
+                                    label="From Year"
+                                    value={selectedTeacher.from_year}
+                                    onChange={(e) => handleEditChange('from_year', e.target.value)}
+                                    fullWidth
+                                />
+                            </div>
+                            <div className="flex flex-col-2 space-x-4">
+                                <TextField
+                                    label="Gender"
+                                    value={selectedTeacher.gender}
+                                    onChange={(e) => handleEditChange('gender', e.target.value)}
+                                    fullWidth
+                                />
                             </div>
                         </div>
                     )}
@@ -263,6 +318,7 @@ const AdminTeacher = () => {
                     </Button>
                 </DialogActions>
             </Dialog>
+
         </div>
     );
 };

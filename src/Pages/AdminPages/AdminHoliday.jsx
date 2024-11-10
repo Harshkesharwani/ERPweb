@@ -17,7 +17,7 @@ const AdminHoliday = () => {
   const [holidays, setHolidays] = useState([]);
   const [dialogOpen, setDialogOpen] = useState(false);
   const [selectedHoliday, setSelectedHoliday] = useState({ name: '', date: '', day: '' });
-
+  const [con, setcon] = useState(false);
   useEffect(() => {
     fetchHolidays();
   }, []);
@@ -35,7 +35,10 @@ const AdminHoliday = () => {
     }
   };
 
-  const handleOpenDialog = (holiday) => {
+  const handleOpenDialog = (holiday, con) => {
+    if (con) {
+      setcon(con);
+    }
     setSelectedHoliday(holiday);
     setDialogOpen(true);
   };
@@ -51,23 +54,21 @@ const AdminHoliday = () => {
 
   const handleSave = async () => {
     const { name, date, day } = selectedHoliday;
-
-    if (name && date) {
-      try {
-        const method = selectedHoliday ? 'POST' : 'POST';
-        const endpoint = name ? `${url}/admin_holidays_update` : `${url}/admin_holidays_create`;
-        const response = await fetch(endpoint, {
-          method,
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ name, date, day }),
-        });
-        if (response.ok) {
-          fetchHolidays();
-          handleCloseDialog();
-        }
-      } catch (error) {
-        console.error('Error saving holiday:', error);
+    console.log(con)
+    try {
+      const method = 'POST';
+      const endpoint = con ? `${url}/admin_holidays_update` : `${url}/admin_holidays_create`;
+      const response = await fetch(endpoint, {
+        method,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, date, day }),
+      });
+      if (response.ok) {
+        fetchHolidays();
+        handleCloseDialog();
       }
+    } catch (error) {
+      console.error('Error saving holiday:', error);
     }
   };
 
@@ -91,13 +92,13 @@ const AdminHoliday = () => {
   const columnDefs = [
     { headerName: "Name", field: "name", sortable: true, filter: true },
     { headerName: "Date", field: "date", sortable: true, filter: true },
-    { headerName: "Description", field: "dayOfWeek", sortable: true, filter: true },
+    { headerName: "Day", field: "dayOfWeek", sortable: true, filter: true },
     {
       headerName: "Actions",
       cellRenderer: (params) => (
         <div className='m-2 flex justify-center items-center space-x-6'>
           <EditIcon
-            onClick={() => handleOpenDialog(params.data)}
+            onClick={() => handleOpenDialog(params.data, true)}
             className="text-yellow-500 cursor-pointer"
           />
           <DeleteIcon
@@ -115,7 +116,7 @@ const AdminHoliday = () => {
         <h2 className="text-2xl font-bold mb-4">Admin Holiday</h2>
         <Button
           color="primary"
-          onClick={() => handleOpenDialog({ id: null, name: '', date: '', day: '' })}
+          onClick={() => handleOpenDialog({ name: '', date: '', day: '' })}
           className="mb-4 text-2xl"
         >
           +
@@ -147,7 +148,7 @@ const AdminHoliday = () => {
               fullWidth
             />
             <TextField
-              label="Description"
+              label="Day"
               value={selectedHoliday.day}
               onChange={(e) => handleEditChange('day', e.target.value)}
               fullWidth
