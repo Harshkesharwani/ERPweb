@@ -39,7 +39,7 @@ const Login = () => {
         } else {
           navigate('/Admin/Admin-Dashboard');
         }
-      }else{
+      } else {
         throw new Error('Login not working');
       }
 
